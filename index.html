@@ -10,13 +10,13 @@
     <header></header>
     <main>
         <section>
-            <form>
+            <form name="pizzaCreating">
                 <label>Name : </label>
-                <input type="text" required maxlength="30"><br>
+                <input type="text" id="pizzaName" required maxlength="30"><br>
                 <label>Price : </label>
-                <input type="number" required min="0" step=".01"><br>
+                <input type="number" id="pizzaPrice" required min="0" step=".01"><br>
                 <label>Heat : </label>
-                <input type="number" min="1" max="3"><br>
+                <input type="number" id="pizzaHeat" min="1" max="3"><br>
                 
                 <!-- Toppings -->
                 <label>Toppings : </label><br>
@@ -52,18 +52,18 @@
                 
                 <br>
                 <label>Photo : </label>
-                <select name="PizzaPhoto" id="Photos" style="width: 200px;">
-                    <option data-img_src="https://pizza-la-strada.de/wp-content/uploads/2017/01/Pizza_Salami.jpg">Salami</option>
-                    <option data-img_src="https://th.bing.com/th/id/Rb7a34c7074471578bb6f9b7f86beb9d4?rik=1MZv4%2bg1f23UgA&pid=ImgRaw">Hawaii</option>
-                    <option data-img_src="https://th.bing.com/th/id/R9d2d53e324ac16cb4a80b66229cc131b?rik=tYYRoxRGhSNPfQ&pid=ImgRaw">Prosciutto</option>
-                    </select><br>
-                <input type="submit" value="Add Pizza">
+                <select name="PizzaPhoto" id="pizzaPhotos" style="width: 200px;">
+                    <option value="https://pizza-la-strada.de/wp-content/uploads/2017/01/Pizza_Salami.jpg">Salami</option>
+                    <option value="https://th.bing.com/th/id/Rb7a34c7074471578bb6f9b7f86beb9d4?rik=1MZv4%2bg1f23UgA&pid=ImgRaw">Hawaii</option>
+                    <option value="https://th.bing.com/th/id/R9d2d53e324ac16cb4a80b66229cc131b?rik=tYYRoxRGhSNPfQ&pid=ImgRaw">Prosciutto</option>
+                </select><br>
+                <input type="submit" value="Add pizza" id="submitBtn" onclick="submitForm()">
             </form>
         </section>
         <section>
             <h1>Pizza menu</h1>
             <div>
-                
+
             </div>
         </section>
     </main>
