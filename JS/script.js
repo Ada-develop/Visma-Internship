@@ -14,7 +14,7 @@ function submitForm(){
 
 
 submit.addEventListener("click", function(){
-
+  let pizzaId;
   let pizzaName =  document.getElementById("pizzaName").value;
   let pizzaPrice = document.getElementById("pizzaPrice").value;
   let pizzaHeat = document.getElementById("pizzaHeat").value;
@@ -31,15 +31,27 @@ submit.addEventListener("click", function(){
       pizzaToppingsArr.push(element.name);
   })
 
+  if(sessionStorage.getItem("id") == null){
+    sessionStorage.setItem("id", 0);
+    pizzaId = 0;
+  }else if(sessionStorage.getItem("id") != null){
+    let gettedId = sessionStorage.getItem("id");
+    pizzaId = Number(gettedId) + 1;
+    sessionStorage.setItem("id", pizzaId);
+  }
+
 //Pizza's Object
 
   let pizza = {
+      'id' : pizzaId,
       'name' : pizzaName,
       'price' : pizzaPrice,
       'heat' : pizzaHeat,
       'topping' : pizzaToppingsArr,
       'photo' : pizzaPhotoURL
   }
+
+  
 
 
 // Data Validation
@@ -54,7 +66,7 @@ if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
         //Submission
  
         pizzaList.push(pizza);
-        window.sessionStorage.setItem(`pizza`, JSON.stringify(pizza));
+        window.sessionStorage.setItem(`pizza_${pizzaId}`, JSON.stringify(pizza));
         submitForm();
           
   }
