@@ -42,7 +42,7 @@ submit.addEventListener("click", function(){
     let gettedId = sessionStorage.getItem("id");
     pizzaId = Number(gettedId) + 1;
     sessionStorage.setItem("id", pizzaId);
-    sessionStorage.setItem("PizzasArray", pizzaList);
+    
   }
 
 //Pizza's Object
@@ -56,17 +56,6 @@ submit.addEventListener("click", function(){
       'photo' : pizzaPhotoURL
   }
 
-
-//
-
-let pizzaDiv = `<div class="pizza ${pizzaId}">
-<h3 class="name">${pizzaName}<span class="heat">*</span></h3>
-<p>${pizzaPrice}</p>
-<img src="${pizzaPhotoURL}" class="pizzaPhoto">
-<p class="toppings">${pizzaToppingsArr}</p>
-</div>`
-
-
 // Data Validation
 
 if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
@@ -76,14 +65,42 @@ if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
             checkbox.required = "";
         });
 
-        
+        if(sessionStorage.getItem("PizzasArray") == null){
+          pizzaList.push(pizza);
+          sessionStorage.setItem("PizzasArray", pizzaList);
+          
+        }else if(sessionStorage.getItem("PizzasArray") != null){
+          let gettedPizzaArr = sessionStorage.getItem("PizzasArray");
+          pizzaList.push(pizza);
+          sessionStorage.setItem("PizzasArray", pizzaList);
 
-        //Submission
-        pizzaList.push(pizza);
-        sessionStorage.setItem("PizzasArray",pizzaList);
+        }
+        //Submission      
         sessionStorage.setItem(`pizza_${pizzaId}`, JSON.stringify(pizza));
-        displayPizzas.innerHTML += pizzaDiv;
+        
+        
+        //console.log(pizzaList);
+        
+        //displayPizzas.innerHTML += pizzaDiv;
+        
+   
+          
+          
+         
+        
+        
         submitForm();
+        let gettedPizzasArr = sessionStorage.getItem("PizzasArray");
+        console.log(gettedPizzasArr + " session");
+        let pizzaDataDisplay = gettedPizzasArr.map((pizza) =>{
+          displayPizzas.innerHTML += `<div class="pizza ${pizza.id}">
+          <h3 class="name">${pizza.name}<span class="heat">*</span></h3>
+          <p>${pizza.price}</p>
+          <img src="${pizza.photo}" class="pizzaPhoto">
+          <p class="toppings">${pizza.topping}</p>
+          </div>`;
+        })
+      
         
           
   }
@@ -93,6 +110,9 @@ else
   }
 
 })
+
+
+
 
 
 
