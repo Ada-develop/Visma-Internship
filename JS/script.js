@@ -1,6 +1,18 @@
 let submit = document.getElementById("submitBtn");
 let pizzaList = [];
 
+// Form Submition
+function submitForm(){
+
+    let form = document.getElementsByName('pizzaCreating')[0];
+    form.submit();
+    form.reset();
+    alert('submited and reseted');
+    return false;
+}
+
+
+
 submit.addEventListener("click", function(){
 
   let pizzaName =  document.getElementById("pizzaName").value;
@@ -13,9 +25,13 @@ submit.addEventListener("click", function(){
 
   let pizzaToppingsArr = [];
   
+//Collecting Toppings
+
   pizzaToppingsChecked.forEach(function(element){
       pizzaToppingsArr.push(element.name);
   })
+
+//Pizza's Object
 
   let pizza = {
       'name' : pizzaName,
@@ -25,13 +41,34 @@ submit.addEventListener("click", function(){
       'photo' : pizzaPhotoURL
   }
 
+
+// Data Validation
+
+if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
+    {
+        let pizzaToppingCheckBoxes = document.querySelectorAll("input[type=checkbox]");
+        pizzaToppingCheckBoxes.forEach(function(checkbox){
+            checkbox.required = "";
+        });
+
+        //Submission
+ 
+        pizzaList.push(pizza);
+        window.sessionStorage.setItem(`pizza`, JSON.stringify(pizza));
+        submitForm();
+          
+  }
+else
+  {
+    alert("Fill all required fields");  
+  }
+
+
+
+  
+
+  
 })
 
-function submitForm(){
 
-    let form = document.getElementsByName('pizzaCreating')[0];
-    form.submit();
-    form.reset();
-    alert('submited and reseted');
-    return false;
-}
+
