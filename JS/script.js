@@ -141,7 +141,7 @@ submit.addEventListener("click", function()
 
 // Data Validation
 
-if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice >= 0)
+if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice >= 0 && pizzaHeat >= 1)
     {
 
       let pizzaToppingCheckBoxes = document.querySelectorAll("input[type=checkbox]");
