@@ -60,9 +60,6 @@ catch(err)
   console.log(err);
 }
 
-
-
-
 // Heat Level with ChilliPapper
 
 let chiliPapper = '<img src="https://freesvg.org/img/1535574219.png" class="papper">';
@@ -141,26 +138,26 @@ submit.addEventListener("click", function()
 
 // Data Validation
 
-if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice >= 0 && pizzaHeat >= 1)
+  if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
     {
 
-      let pizzaToppingCheckBoxes = document.querySelectorAll("input[type=checkbox]");
-      pizzaToppingCheckBoxes.forEach(function(checkbox){
-        checkbox.required = "";
-      });
+    let pizzaToppingCheckBoxes = document.querySelectorAll("input[type=checkbox]");
+    pizzaToppingCheckBoxes.forEach(function(checkbox){
+    checkbox.required = "";
+    });
 
-      //Submission      
+    //Submission      
 
-      sessionStorage.setItem(`pizza_${pizzaId}`, JSON.stringify(pizza));
-      sessionStorage.setItem(`PizzaList`, JSON.stringify(pizzaList));
-      submitForm();
-      location.reload();
+    sessionStorage.setItem(`pizza_${pizzaId}`, JSON.stringify(pizza));
+    sessionStorage.setItem(`PizzaList`, JSON.stringify(pizzaList));
+    submitForm();
+    location.reload();
 
-}
-else
-{
-  alert("Fill all required fields");  
-}
+  }
+  else
+  {
+    alert("Fill all required fields");  
+  }
 
 })
 //END OF FORM SUBMITION
