@@ -155,9 +155,16 @@ select,#pizzaPrice, #pizzaHeat{
 
 /* Pizza Menu */
 
+#displayPizzas{
+  display: flex;
+  flex-flow: row wrap;justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .pizza{
   margin: 20px;
-
 }
 
 .papper{
