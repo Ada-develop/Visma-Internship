@@ -22,9 +22,11 @@ let parsedPizzas = JSON.parse(gettedPizzasArr);
 
 
 try{
-  for(let i = 0; i < sessionStorage.length; i++)
+  
+  for(let index = 0; index < sessionStorage.length; index++)
   {
-  const key = sessionStorage.key(i);
+  
+  const key = sessionStorage.key(index);
   
   let pizza = sessionStorage.getItem(key);
   let pizzaID = JSON.parse(pizza);
@@ -32,19 +34,43 @@ try{
     if( typeof(pizzaID.id) == "number" ){
 
     displayPizzas.innerHTML += `<div class="pizza ${pizzaID.id}">
-    <h3 class="name">${pizzaID.name}<span class="heat">*</span></h3>
+    <h3 class="name">${pizzaID.name}<span class="heat" value="${pizzaID.heat}"></span></h3>
     <p>${pizzaID.price}</p>
     <img src="${pizzaID.photo}" class="pizzaPhoto">
     <p class="toppings">${pizzaID.topping}</p>
     <button class="deleteBtn" value="${pizzaID.id}">Delete</button>
     </div>`;
+
+    
+    
+
     }else if(pizzaID.id == "undefined"){
       console.log("nothing");
       }
+      
   }
 }catch(err){
   console.log(err);
 }
+
+
+
+
+// Heat Level with ChilliPapper
+
+let chiliPapper = '<img src="https://freesvg.org/img/1535574219.png" class="papper" style="height:30px; width:30px;">';
+let heatSpanTag = document.querySelectorAll("span.heat");
+
+heatSpanTag.forEach(function(tag){
+
+  let heatValue = tag.getAttribute("value");
+
+  for(let i = 0; i < heatValue; i++)
+  {
+    tag.innerHTML += chiliPapper;
+  }
+
+})
 
 
 
