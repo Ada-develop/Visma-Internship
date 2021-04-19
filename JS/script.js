@@ -10,6 +10,7 @@ function submitForm(){
     form.submit();
     form.reset();
     alert('submited and reseted');
+    
     return false;
 }
 
@@ -20,15 +21,32 @@ let gettedPizzasArr = sessionStorage.getItem("PizzasArray");
 let parsedPizzas = JSON.parse(gettedPizzasArr);
 
 
-  for(pizza in parsedPizzas)
+try{
+  for(let i = 0; i < sessionStorage.length; i++)
   {
-    displayPizzas.innerHTML += `<div class="pizza ${parsedPizzas[pizza].id}">
-    <h3 class="name">${parsedPizzas[pizza].name}<span class="heat">*</span></h3>
-    <p>${parsedPizzas[pizza].price}</p>
-    <img src="${parsedPizzas[pizza].photo}" class="pizzaPhoto">
-    <p class="toppings">${parsedPizzas[pizza].topping}</p>
+  const key = sessionStorage.key(i);
+  
+  let pizza = sessionStorage.getItem(key);
+  let pizzaID = JSON.parse(pizza);
+
+    if( typeof(pizzaID.id) == "number" ){
+
+    displayPizzas.innerHTML += `<div class="pizza ${pizzaID.id}">
+    <h3 class="name">${pizzaID.name}<span class="heat">*</span></h3>
+    <p>${pizzaID.price}</p>
+    <img src="${pizzaID.photo}" class="pizzaPhoto">
+    <p class="toppings">${pizzaID.topping}</p>
+    <button class="deleteBtn" value="${pizzaID.id}">Delete</button>
     </div>`;
+    }else if(pizzaID.id == "undefined"){
+      console.log("nothing");
+      }
   }
+}catch(err){
+  console.log(err);
+}
+
+
 
 submit.addEventListener("click", function(){
   
@@ -95,7 +113,7 @@ if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
 
         }
         //Submission      
-        sessionStorage.setItem(`pizza_${pizzaId}`, pizza);
+        sessionStorage.setItem(`pizza_${pizzaId}`, JSON.stringify(pizza));
         
         
         //console.log(pizzaList);
@@ -111,11 +129,11 @@ if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
         
         
         submitForm();
+        location.reload();
+  
         
+        //Displaying pizzas from sessionStorage
 
-      // 
-        
-          
   }
 else
   {
@@ -124,7 +142,21 @@ else
 
 })
 
+//Delete Button
 
+let dltBtn = document.querySelectorAll("button.deleteBtn");
+
+
+dltBtn.forEach(function(btn){
+  btn.addEventListener("click",function(){
+    let btnId = btn.value;
+    let popUp = confirm("Are you sure to delete?");
+    if(popUp == true){
+      sessionStorage.removeItem(`pizza_${btnId}`);
+      location.reload();
+  }
+})
+})
 
 
 
