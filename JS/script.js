@@ -1,7 +1,9 @@
 let submit = document.getElementById("submitBtn");
 let displayPizzas = document.getElementById("displayPizzas");
 let pizzaList = [];
+
 // Form Submition
+
 function submitForm(){
 
     let form = document.getElementsByName('pizzaCreating')[0];
@@ -11,7 +13,22 @@ function submitForm(){
     return false;
 }
 
+//Displaying pizzas from sessionStorage
 
+let gettedPizzasArr = sessionStorage.getItem("PizzasArray");
+
+let parsedPizzas = JSON.parse(gettedPizzasArr);
+
+
+  for(pizza in parsedPizzas)
+  {
+    displayPizzas.innerHTML += `<div class="pizza ${parsedPizzas[pizza].id}">
+    <h3 class="name">${parsedPizzas[pizza].name}<span class="heat">*</span></h3>
+    <p>${parsedPizzas[pizza].price}</p>
+    <img src="${parsedPizzas[pizza].photo}" class="pizzaPhoto">
+    <p class="toppings">${parsedPizzas[pizza].topping}</p>
+    </div>`;
+  }
 
 submit.addEventListener("click", function(){
   
@@ -78,7 +95,7 @@ if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
 
         }
         //Submission      
-        sessionStorage.setItem(`pizza_${pizzaId}`, JSON.stringify(pizza));
+        sessionStorage.setItem(`pizza_${pizzaId}`, pizza);
         
         
         //console.log(pizzaList);
@@ -87,21 +104,11 @@ if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
         
         
           
-        let gettedPizzasArr = sessionStorage.getItem("PizzasArray");
-        console.log(gettedPizzasArr[0].id);
-
-        for(pizza in gettedPizzasArr){
-          displayPizzas.innerHTML += `<div class="pizza ${gettedPizzasArr[pizza].id}">
-          <h3 class="name">${gettedPizzasArr[pizza].name}<span class="heat">*</span></h3>
-          <p>${gettedPizzasArr[pizza].price}</p>
-          <img src="${gettedPizzasArr[pizza].photo}" class="pizzaPhoto">
-          <p class="toppings">${gettedPizzasArr[pizza].topping}</p>
-          </div>`;
-        }
+        
          
         
          
-    
+        
         
         submitForm();
         
@@ -116,9 +123,6 @@ else
   }
 
 })
-
-//[{"id":14,"name":"ada","price":"1","heat":"1","topping":["basil","garlic"],"photo":"https://pizza-la-strada.de/wp-content/uploads/2017/01/Pizza_Salami.jpg"}]
-
 
 
 
