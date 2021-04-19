@@ -48,13 +48,15 @@ submit.addEventListener("click", function(){
 //Pizza's Object
 
   let pizza = {
+
       'id' : pizzaId,
       'name' : pizzaName,
       'price' : pizzaPrice,
       'heat' : pizzaHeat,
       'topping' : pizzaToppingsArr,
       'photo' : pizzaPhotoURL
-  }
+    
+    }
 
 // Data Validation
 
@@ -67,12 +69,12 @@ if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
 
         if(sessionStorage.getItem("PizzasArray") == null){
           pizzaList.push(pizza);
-          sessionStorage.setItem("PizzasArray", pizzaList);
+          sessionStorage.setItem("PizzasArray", JSON.stringify(pizzaList));//
           
         }else if(sessionStorage.getItem("PizzasArray") != null){
           let gettedPizzaArr = sessionStorage.getItem("PizzasArray");
           pizzaList.push(pizza);
-          sessionStorage.setItem("PizzasArray", pizzaList);
+          sessionStorage.setItem("PizzasArray", JSON.stringify(pizzaList));//
 
         }
         //Submission      
@@ -83,24 +85,28 @@ if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
         
         //displayPizzas.innerHTML += pizzaDiv;
         
-   
+        
           
-          
+        let gettedPizzasArr = sessionStorage.getItem("PizzasArray");
+        console.log(gettedPizzasArr[0].id);
+
+        for(pizza in gettedPizzasArr){
+          displayPizzas.innerHTML += `<div class="pizza ${gettedPizzasArr[pizza].id}">
+          <h3 class="name">${gettedPizzasArr[pizza].name}<span class="heat">*</span></h3>
+          <p>${gettedPizzasArr[pizza].price}</p>
+          <img src="${gettedPizzasArr[pizza].photo}" class="pizzaPhoto">
+          <p class="toppings">${gettedPizzasArr[pizza].topping}</p>
+          </div>`;
+        }
          
         
+         
+    
         
         submitForm();
-        let gettedPizzasArr = sessionStorage.getItem("PizzasArray");
-        console.log(gettedPizzasArr + " session");
-        let pizzaDataDisplay = gettedPizzasArr.map((pizza) =>{
-          displayPizzas.innerHTML += `<div class="pizza ${pizza.id}">
-          <h3 class="name">${pizza.name}<span class="heat">*</span></h3>
-          <p>${pizza.price}</p>
-          <img src="${pizza.photo}" class="pizzaPhoto">
-          <p class="toppings">${pizza.topping}</p>
-          </div>`;
-        })
-      
+        
+
+      // 
         
           
   }
@@ -111,7 +117,7 @@ else
 
 })
 
-
+//[{"id":14,"name":"ada","price":"1","heat":"1","topping":["basil","garlic"],"photo":"https://pizza-la-strada.de/wp-content/uploads/2017/01/Pizza_Salami.jpg"}]
 
 
 
