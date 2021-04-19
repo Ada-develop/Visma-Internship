@@ -1,185 +1,176 @@
 
 /* Main  */
+
 html {
-    font-family: 'Montserrat', Arial, sans-serif;
-  }
+  font-family: 'Montserrat', Arial, sans-serif;
+}
   
-  body {
-    background: #F2F3EB;
-  }
+body {
+  background: #F2F3EB;
+}
   
-  button {
-    overflow: visible;
-  }
+button {
+  overflow: visible;
+}
   
-  button, select,#pizzaPrice, #pizzaHeat {
-    text-transform: none;
-  }
+button, select,#pizzaPrice, #pizzaHeat {
+  text-transform: none;
+}
 
-  button, input, select,#pizzaPrice, #pizzaHeat {
-    color: #5A5A5A;
-    font: inherit;
-    margin: 0;
-  }
+button, input, select,#pizzaPrice, #pizzaHeat {
+  color: #5A5A5A;
+  font: inherit;
+  margin-top: 20px;
+  margin: 0;
+}
 
- 
+input {
+  line-height: normal;
+}
   
-  input {
-    line-height: normal;
-  }
+#container {
+  border: solid 3px #474544;
+  max-width: 768px;
+  margin: 60px auto;
+  position: relative;
+}
   
-  #container {
-    border: solid 3px #474544;
-    max-width: 768px;
-    margin: 60px auto;
-    position: relative;
-  }
+form {
+  padding: 37.5px;
+  margin: 50px 0;
+}
   
-  form {
-    padding: 37.5px;
-    margin: 50px 0;
-  }
+h1 {
+  color: #474544;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 7px;
+  text-align: center;
+  text-transform: uppercase;
+}
   
-  h1 {
-    color: #474544;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 7px;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  
-
 /* Buttons and Form */
   
-  input, select,#pizzaPrice, #pizzaHeat {
-      background: none;
-    border: none;
-      border-bottom: solid 2px #474544;
-      color: #474544;
-      font-size: 1.000em;
-    font-weight: 400;
-    letter-spacing: 1px;
-      margin: 0em 0 1.875em 0;
-      padding: 0 0 0.875em 0;
-    text-transform: uppercase;
-      width: 100%;
-      box-sizing: border-box;
-      transition: all 0.3s;
+input, select,#pizzaPrice, #pizzaHeat {
+  background: none;
+  border: none;
+  border-bottom: solid 2px #474544;
+  color: #474544;
+  font-size: 1.000em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0em 0 1.875em 0;
+  padding: 0 0 0.875em 0;
+  text-transform: capitalize;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s;
     
-  }
-  
-  input[type='text']:focus{
-      outline: none;
-      padding: 0 0 0.875em 0;
-  }
+}
 
-  input[type='checkbox']{
-      width:50%;
-  }
+#pizzaPhotos{
+  text-transform: uppercase;
+}
   
-  .message {
-      float: none;
-  }
-  
-  .name {
-      float: left;
-      width: 45%;
-  }
-  
-  select,#pizzaPrice, #pizzaHeat{
-    background: url('https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-down-32.png') no-repeat right;
-    outline: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-  }
+input[type='text']:focus{
+  outline: none;
+  padding: 0 0 0.875em 0;
+}
 
-
-
-  #pizzaHeat , #pizzaPrice{
-    outline: none;
-    background:  #F2F3EB;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-  }
-
- 
+input[type='checkbox']{
+  width:50%;
+}
   
-  .subject {
-    width: 100%;
-  }
+.message {
+  float: none;
+}
   
-  #pizzaName {
-    width: 100%;
-  }
+.name {
+  float: left;
+  width: 45%;
+}
   
+select,#pizzaPrice, #pizzaHeat{
+  background: url('https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-down-32.png') no-repeat right;
+  outline: none;
+}
 
+#pizzaHeat , #pizzaPrice{
+  outline: none;
+  background:  #F2F3EB;
+}
+
+.subject {
+  width: 100%;
+}
   
-  #submitBtn {
-    background: none;
-    border: solid 2px #474544;
-    color: #474544;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Helvetica', Arial, sans-serif;
-    font-size: 0.875em;
-    font-weight: bold;
-    outline: none;
-    padding: 20px 35px;
-    text-transform: uppercase;
+#pizzaName {
+  width: 100%;
+}
     
-  }
+#submitBtn {
+  background: none;
+  border: solid 2px #474544;
+  color: #474544;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 0.875em;
+  font-weight: bold;
+  outline: none;
+  padding: 20px 35px;
+  text-transform: uppercase;
+}
   
-  #submitBtn:hover {
-    background: #00C851;
-    color: #F2F3EB;
-  }
+#submitBtn:hover {
+  background: #00C851;
+  color: #F2F3EB;
+}
   
-
-  .deleteBtn {
-    margin: 0 auto;
-    background: #ff4444;
-    border: solid 2px #474544;
-    color: white;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Helvetica', Arial, sans-serif;
-    font-size: 0.875em;
-    font-weight: bold;
-    outline: none;
-    padding: 20px 35px;
-    text-transform: uppercase;
-      transition: all 0.3s;
-  }
+.deleteBtn {
+  margin: 0 auto;
+  background: #ff4444;
+  border: solid 2px #474544;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 0.875em;
+  font-weight: bold;
+  outline: none;
+  padding: 20px 35px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
   
-  .deleteBtn:hover {
-    background: #CC0000;
-    color: #F2F3EB;
+.deleteBtn:hover {
+  background: #CC0000;
+  color: #F2F3EB;
   }
 
 /* Pizza Menu */
 
 .pizza{
-    margin: 20px;
+  margin: 20px;
 
 }
 
 .papper{
-    height: 25px;
-    width: 25px;
+  height: 25px;
+  width: 25px;
 }
 
 .pizzaPhoto{
-    height: 150px;
-    width: 150px;
+  height: 150px;
+  width: 150px;
 }
 
 #pizzaPrice, #pizzaHeat {
-    outline: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 
 .toppings{
-    text-transform: capitalize;
+  text-transform: capitalize;
 }

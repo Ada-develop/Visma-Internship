@@ -1,39 +1,44 @@
+// Necessary variables
+
 let submit = document.getElementById("submitBtn");
 let displayPizzas = document.getElementById("displayPizzas");
 let pizzaList = [];
 
+
+// Variables for displaying 
+
+let gettedPizzasArr = sessionStorage.getItem("PizzasArray");
+let parsedPizzas = JSON.parse(gettedPizzasArr);
+
 // Form Submition
 
-function submitForm(){
+function submitForm()
+{
 
-    let form = document.getElementsByName('pizzaCreating')[0];
+    let form = document.getElementsByName('pizzaCreating');
     form.submit();
     form.reset();
-    alert('submited and reseted');
     
     return false;
 }
 
 //Displaying pizzas from sessionStorage
 
-let gettedPizzasArr = sessionStorage.getItem("PizzasArray");
-
-let parsedPizzas = JSON.parse(gettedPizzasArr);
-
-
-try{
+try
+{
   
   for(let index = 0; index < sessionStorage.length; index++)
   {
   
-  const key = sessionStorage.key(index);
+    const key = sessionStorage.key(index);
   
-  let pizza = sessionStorage.getItem(key);
-  let pizzaID = JSON.parse(pizza);
+    let pizza = sessionStorage.getItem(key);
+    let pizzaID = JSON.parse(pizza);
 
-    if( typeof(pizzaID.id) == "number" ){
+    if( typeof(pizzaID.id) == "number" )
+    {
 
-      pizzaList.push(pizzaID);
+    pizzaList.push(pizzaID);
 
     displayPizzas.innerHTML += `<div class="pizza ${pizzaID.id}">
     <h4 class="pizzaName">${pizzaID.name}&emsp;<span class="heat" value="${pizzaID.heat}"></span></h4>
@@ -43,14 +48,15 @@ try{
     <button class="deleteBtn" value="${pizzaID.id}">Delete</button>
     </div>`;
 
-    
-    
-
-    }else if(pizzaID.id == "undefined"){
+    }
+    else if(pizzaID.id == "undefined")
+    {
       console.log("nothing");
-      }
+    }
   }
-}catch(err){
+}
+catch(err)
+{
   console.log(err);
 }
 
@@ -62,20 +68,25 @@ try{
 let chiliPapper = '<img src="https://freesvg.org/img/1535574219.png" class="papper">';
 let heatSpanTag = document.querySelectorAll("span.heat");
 
-heatSpanTag.forEach(function(tag){
+heatSpanTag.forEach(function(tag)
+{
 
   let heatValue = tag.getAttribute("value");
 
   for(let i = 0; i < heatValue; i++)
   {
+
     tag.innerHTML += chiliPapper;
+
   }
 
 })
 
 
+// FORM SUBMITION
 
-submit.addEventListener("click", function(){
+submit.addEventListener("click", function()
+{
   
   //Getting necessary variables
 
@@ -91,16 +102,24 @@ submit.addEventListener("click", function(){
   
 //Collecting Toppings
 
-  pizzaToppingsChecked.forEach(function(element){
+  pizzaToppingsChecked.forEach(function(element)
+  {
+
       pizzaToppingsArr.push(element.name);
+
   })
 
 //Setting ID for Pizza in sessionStorage
 
-  if(sessionStorage.getItem("id") == null){
+  if(sessionStorage.getItem("id") == null)
+  {
     sessionStorage.setItem("id", 0);
     pizzaId = 0;
-  }else if(sessionStorage.getItem("id") != null){
+
+  }
+  else if(sessionStorage.getItem("id") != null)
+  {
+
     let gettedId = sessionStorage.getItem("id");
     pizzaId = Number(gettedId) + 1;
     sessionStorage.setItem("id", pizzaId);
@@ -124,55 +143,43 @@ submit.addEventListener("click", function(){
 
 if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
     {
-        let pizzaToppingCheckBoxes = document.querySelectorAll("input[type=checkbox]");
-        pizzaToppingCheckBoxes.forEach(function(checkbox){
-            checkbox.required = "";
-        });
-        //Submission      
-        sessionStorage.setItem(`pizza_${pizzaId}`, JSON.stringify(pizza));
-        sessionStorage.setItem(`PizzaList`, JSON.stringify(pizzaList));
-        
-        //console.log(pizzaList);
-        
-        //displayPizzas.innerHTML += pizzaDiv;
-        
-        
-          
-        
-         
-        
-         
-        
-        
-        submitForm();
-        location.reload();
-  
-        
-        //Displaying pizzas from sessionStorage
 
-  }
+      let pizzaToppingCheckBoxes = document.querySelectorAll("input[type=checkbox]");
+      pizzaToppingCheckBoxes.forEach(function(checkbox){
+        checkbox.required = "";
+      });
+
+      //Submission      
+
+      sessionStorage.setItem(`pizza_${pizzaId}`, JSON.stringify(pizza));
+      sessionStorage.setItem(`PizzaList`, JSON.stringify(pizzaList));
+      submitForm();
+      location.reload();
+
+}
 else
-  {
-    alert("Fill all required fields");  
-  }
+{
+  alert("Fill all required fields");  
+}
 
 })
+//END OF FORM SUBMITION
+
 
 //Delete Button
 
 let dltBtn = document.querySelectorAll("button.deleteBtn");
 
-
-dltBtn.forEach(function(btn){
-  btn.addEventListener("click",function(){
+dltBtn.forEach(function(btn)
+{
+  btn.addEventListener("click",function()
+  {
     let btnId = btn.value;
     let popUp = confirm("Are you sure to delete?");
-    if(popUp == true){
+    if(popUp == true)
+    {
       sessionStorage.removeItem(`pizza_${btnId}`);
       location.reload();
-  }
+    }
+  })
 })
-})
-
-
-
