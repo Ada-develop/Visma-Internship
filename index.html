@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/style.css">
     <title>Pizzeria</title>
 </head>
 <body>
-    <header></header>
-    <main>
+    <header>
+        <h1>&bull;Pizza Menu Management System &bull;</h1>
+    </header>
+    <main id="container">
         <section>
+            <!-- Main Form -->
+
             <form name="pizzaCreating">
                 <label>Name : </label>
                 <input type="text" id="pizzaName" required maxlength="30"><br>
@@ -19,7 +24,9 @@
                 <input type="number" id="pizzaHeat" min="1" max="3"><br>
                 
                 <!-- Toppings -->
-                <label>Toppings : </label><br>
+                <br>
+                <label id="toppingLbl">Toppings : </label>
+                <br><br>
                 <input type="checkbox" id="mozarella" name="mozarella" required>
                 <label for="mozarella">Mozarella</label> <br>
                 
@@ -50,7 +57,7 @@
                 <input type="checkbox" id="mushroom" name="mushroom" required>
                 <label for="mushroom">Mushroom</label> 
                 
-                <br>
+                <br><br><br>
                 <label>Photo : </label>
                 <select name="PizzaPhoto" id="pizzaPhotos" style="width: 200px;">
                     <option value="https://pizza-la-strada.de/wp-content/uploads/2017/01/Pizza_Salami.jpg">Salami</option>
@@ -61,6 +68,7 @@
             </form>
         </section>
         <section>
+            <!-- Area for displaying added pizza's -->
             <h1>Pizza menu</h1>
             <div id="displayPizzas">
                 

@@ -33,10 +33,12 @@ try{
 
     if( typeof(pizzaID.id) == "number" ){
 
+      pizzaList.push(pizzaID);
+
     displayPizzas.innerHTML += `<div class="pizza ${pizzaID.id}">
-    <h3 class="name">${pizzaID.name}<span class="heat" value="${pizzaID.heat}"></span></h3>
-    <p>${pizzaID.price}</p>
+    <h4 class="pizzaName">${pizzaID.name}&emsp;<span class="heat" value="${pizzaID.heat}"></span></h4>
     <img src="${pizzaID.photo}" class="pizzaPhoto">
+    <b><p>${pizzaID.price}&#36;</p></b>
     <p class="toppings">${pizzaID.topping}</p>
     <button class="deleteBtn" value="${pizzaID.id}">Delete</button>
     </div>`;
@@ -47,7 +49,6 @@ try{
     }else if(pizzaID.id == "undefined"){
       console.log("nothing");
       }
-      
   }
 }catch(err){
   console.log(err);
@@ -58,7 +59,7 @@ try{
 
 // Heat Level with ChilliPapper
 
-let chiliPapper = '<img src="https://freesvg.org/img/1535574219.png" class="papper" style="height:30px; width:30px;">';
+let chiliPapper = '<img src="https://freesvg.org/img/1535574219.png" class="papper">';
 let heatSpanTag = document.querySelectorAll("span.heat");
 
 heatSpanTag.forEach(function(tag){
@@ -127,20 +128,9 @@ if(pizzaToppingsChecked.length >= 2 && pizzaName != "" && pizzaPrice != "")
         pizzaToppingCheckBoxes.forEach(function(checkbox){
             checkbox.required = "";
         });
-
-        if(sessionStorage.getItem("PizzasArray") == null){
-          pizzaList.push(pizza);
-          sessionStorage.setItem("PizzasArray", JSON.stringify(pizzaList));//
-          
-        }else if(sessionStorage.getItem("PizzasArray") != null){
-          let gettedPizzaArr = sessionStorage.getItem("PizzasArray");
-          pizzaList.push(pizza);
-          sessionStorage.setItem("PizzasArray", JSON.stringify(pizzaList));//
-
-        }
         //Submission      
         sessionStorage.setItem(`pizza_${pizzaId}`, JSON.stringify(pizza));
-        
+        sessionStorage.setItem(`PizzaList`, JSON.stringify(pizzaList));
         
         //console.log(pizzaList);
         
